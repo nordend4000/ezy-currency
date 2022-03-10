@@ -1,38 +1,529 @@
-.App {
-  text-align: center;
+:root {
+	--primary-color: rgb(230, 230, 242);
+	--secondary-color: rgb(20, 20, 45);
+	--variation-1: rgb(180, 180, 192);
+	--variation-2: rgb(113, 113, 130);
+	--variation-3: rgb(87, 87, 108);
+	--white: white;
+	--purple: #335;
+	--hover: #8884d8;
+}
+[data-theme="dark"] {
+	--primary-color: #161616;
+	--secondary-color: rgb(244, 244, 252);
+	--variation-3: rgb(180, 180, 192);
+	--variation-2: rgb(113, 113, 130);
+	--variation-1: rgb(87, 87, 108);
+	--purple: rgb(230, 230, 242);
+	--white: #335;
+	--hover: #8884d8;
+}
+/*****************************************   GENERAL  *********************************************/
+body {
+	background-color: var(--secondary-color);
+	color: var(--white);
+	padding: 0;
+	border: 0;
+	width: 100vw;
+	overflow-x: hidden;
+}
+h1 {
+	color: var(--variation-1);
+	text-align: center;
+	letter-spacing: 0.4rem;
+	word-spacing: 10px;
+	font-size: 1.2rem;
+	font-family: "Recursive", monospace;
+	text-transform: uppercase;
+	padding-top: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+	margin-left: 20px;
+	letter-spacing: 3px;
+	font-family: "Recursive", monospace;
+}
+h2:hover {
+	color: var(--hover);
+}
+h3 {
+	text-align: center;
+	font-size: 1rem;
+	letter-spacing: 0.1rem;
+	margin: 20px;
+}
+p {
+	font-size: 0.7rem;
+}
+/*****************************************   CONVERTER   *********************************************/
+.group {
+	background: var(--purple);
+	width: auto;
+	min-width: 70%;
+	max-width: 45vw;
+	margin: 0 auto 20px;
+	display: grid;
+	grid-template-columns: 75% 25%;
+	border-radius: 15px;
+}
+input,
+select {
+	background: none;
+	border: 0;
+	color: var(--white);
+	padding: 10px;
+	text-align: center;
+}
+input {
+	padding-left: 30px;
+	font-size: 1.6rem;
+}
+select {
+	padding: 15px;
+	cursor: pointer;
+	letter-spacing: 1.1px;
+	font-weight: 600;
+	color: var(--hover);
+}
+.input-container {
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-evenly;
+}
+.flags {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+	grid-column-gap: 3rem;
+	grid-row-gap: 1rem;
+	padding: 4%;
+	margin: 0% 20px;
+}
+.side {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 45vw;
+	border-radius: 20px;
+	border: 1px solid var(--purple);
+	margin: 0% 1%;
+}
+.active-flag {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+.unactive-flag {
+	opacity: 1;
+	cursor: pointer;
+}
+.title-currency {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.7rem auto;
+	font-size: 1.4rem;
+}
+.more-flags {
+	cursor: pointer;
+	width: 40vw;
+	margin-left: 2.4rem;
+	font-size: 0.8rem;
+	color: var(--variation-2);
+}
+.bitcon-line {
+	display: flex;
+	justify-content: space-evenly;
+	margin-bottom: 0.5rem;
+	letter-spacing: 1.5px;
+}
+.bitcoin {
+	color: var(--white);
+	font-size: 2.5rem;
+	text-align: center;
+	cursor: pointer;
+}
+.bitcoin-title {
+	color: var(--white);
+	font-size: 2.5rem;
+	text-align: center;
+}
+.timestamp {
+	color: var(--variation-1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.refresh {
+	margin-left: 15px;
+}
+.refresh:hover {
+	color: var(--hover);
+	cursor: pointer;
+}
+/*****************************************   CHART   *********************************************/
+.rechart-container {
+	height: 40vh;
+}
+.chart {
+	border-radius: 20px;
+	border: 1px solid var(--purple);
+	margin: 2% 1%;
+	padding: 2%;
+	height: 100%;
+}
+.chart-header {
+	display: flex;
+	justify-content: space-between;
+	height: 6vh;
+	letter-spacing: 1.5px;
+	padding-bottom: 0.5rem;
+}
+.chart-base {
+	color: var(--variation-1);
+}
+.chart-period {
+	display: flex;
+	justify-content: end;
+}
+.chart-period-btn {
+	margin: 0% 20px;
+	cursor: pointer;
+	color: var(--variation-2);
+	padding-bottom: 0%;
+}
+.chart-period-btn:hover {
+	color: var(--hover);
+}
+.chart-period-btn-active {
+	border-bottom: var(--hover) 4px solid;
+	color: var(--hover);
+	font-weight: 600;
+}
+.chart-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.8rem;
+}
+.chart-figure {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.variation {
+	background: var(--hover);
+	color: var(--white);
+	padding: 1%;
+	border: 1px solid var(--variation-3);
+	border-radius: 10px;
+	margin: 2%;
+	width: 20vw;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.max-min {
+	background: var(--purple);
+	color: var(--variation-1);
+	font-weight: 700;
+	padding: 1%;
+	border: 1px solid var(--variation-2);
+	border-radius: 10px;
+	margin: 2%;
+	width: 15vw;
+	text-align: center;
+}
+.max-min-span {
+	color: var(--white);
+	font-weight: 400;
+}
+.trend {
+	color: var(--purple);
+	font-size: 1.2rem;
+	margin-right: 0.6rem;
+}
+/*****************************************   HEADER   *********************************************/
+header {
+	color: var(--white);
+	font-size: 1.2rem;
+	background: var(--purple);
+	display: flex;
+	justify-content: space-between;
+	font-family: "Recursive", monospace;
+}
+.logo-header-container {
+	display: flex;
+	align-items: center;
+	padding: 0.5rem;
+	cursor: pointer;
+}
+.logo-header {
+	font-size: 1.8rem;
+}
+.link-header-container {
+	display: flex;
+	align-items: center;
+}
+.link-header-container a {
+	text-decoration: none;
+	color: var(--white);
+}
+.link-header span {
+	font-weight: 600;
+	margin-left: 15px;
+}
+.link-header {
+	margin: 0% 2rem;
+	cursor: pointer;
+	font-size: 1.1rem;
+	letter-spacing: 2px;
+}
+.link-header:hover {
+	color: var(--hover);
+}
+/*****************************************   FOOTER   *********************************************/
+footer {
+	color: var(--white);
+	font-size: 1.2rem;
+	background: var(--purple);
+	display: flex;
+	justify-content: space-between;
+	padding: 0.7rem 2rem;
+	padding-top: 2.5rem;
+}
+.footer-left {
+	font-size: 0.8rem;
+	color: var(--white);
+}
+.footer-left span {
+	font-size: 1.1rem;
+	color: var(--variation-1);
+	margin-right: 20px;
+	font-family: "Recursive", monospace;
+}
+.footer-left-title {
+	font-size: 1rem;
+	color: var(--variation-1);
+	margin-right: 8px;
+}
+.footer-right {
+	display: flex;
+	justify-content: end;
+}
+.footer-link {
+	color: var(--variation-1);
+	margin-left: 30px;
+	text-decoration: none;
+	cursor: pointer;
+	font-family: "Recursive", monospace;
+}
+.footer-link:hover {
+	color: var(--hover);
+}
+.credit {
+	color: var(--variation-1);
+	display: flex;
+	justify-content: center;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+}
+.credit a {
+	color: var(--variation-2);
+	margin: 0% 10px;
+	text-decoration: none;
+}
+.credit a:hover {
+	color: var(--hover);
+}
+/*****************************************   TOOLTIPS   *********************************************/
+.tooltip {
+	position: relative;
+	display: inline-block;
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+	color: var(--white);
+	text-align: center;
+	padding: 0.4rem;
+	border-radius: 6px;
+	position: absolute;
+	font-size: 0.5rem;
+	z-index: 100;
+	bottom: -80%;
+	left: -300%;
+	margin-left: 35px;
+	margin-bottom: -10px;
+	opacity: 0;
+	transition: opacity 0.3s;
+	line-height: 10px;
+}
+.tooltip .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	margin-left: -5px;
+}
+.tooltip:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/**********************************************************************************
+*******************************  MEDIA QUERIES  ***********************************
+***********************************************************************************/
+@media only screen and (max-width: 1032px) {
+	h2 {
+		font-size: 0.9rem;
+	}
+	.link-header-container {
+		display: flex;
+		justify-content: space-evenly;
+		margin-left: 1.2rem;
+	}
+	.link-header {
+		font-size: 0.8rem;
+		display: flex;
+		justify-content: space-evenly;
+		margin-left: 2px;
+		padding-bottom: 1.2rem;
+	}
+	footer {
+		font-size: 1.2rem;
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		padding: 0.7rem 1rem;
+		padding-top: 1.5rem;
+	}
+	.footer-left {
+		padding-top: 1rem;
+		font-size: 0.5rem;
+	}
+	.footer-left span {
+		font-size: 0.7rem;
+		margin-right: 10px;
+	}
+	.footer-left-title {
+		font-size: 1rem;
+		margin-right: 6px;
+	}
+	.footer-right {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 0.7rem;
+	}
+	.footer-link {
+		text-align: center;
+		margin-left: 10px;
+	}
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media only screen and (max-width: 732px) {
+	h1 {
+		font-size: 0.7rem;
+	}
+	h2 {
+		font-size: 0.9rem;
+	}
+	h3 {
+		text-align: center;
+		font-size: 0.8rem;
+		letter-spacing: 0.1rem;
+		margin: 10px;
+	}
+	header {
+		display: flex;
+		flex-direction: column;
+	}
+	.logo-header-container {
+		display: flex;
+		justify-content: center;
+	}
+	.link-header-container {
+		display: flex;
+		justify-content: space-evenly;
+		margin-left: 1.2rem;
+	}
+	.link-header {
+		font-size: 0.5rem;
+		display: flex;
+		justify-content: space-evenly;
+		margin-left: 1px;
+		padding-bottom: 1.2rem;
+	}
+	.group {
+		margin: 0 auto 10px;
+		grid-template-columns: 60% 40%;
+	}
+	input {
+		padding-left: 10px;
+		font-size: 0.9rem;
+	}
+	select {
+		padding: 5px;
+	}
+	.title-currency {
+		font-size: 0.2rem;
+	}
+	.tooltip .tooltiptext {
+		padding: 0.4rem;
+		font-size: 0.4rem;
+		z-index: 100;
+		bottom: 5%;
+		left: -200%;
+		margin-left: 0px;
+		margin-bottom: -10px;
+	}
+	.chart-header {
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		height: 100%;
+	}
+	.chart-period {
+		display: flex;
+		justify-content: center;
+		padding-bottom: 1rem;
+	}
+	.chart-period-btn {
+		margin: 0% 20px;
+		padding-bottom: 1rem;
+	}
+	.chart-title {
+		display: block;
+		margin-bottom: 1.4rem;
+		font-size: 0.8rem;
+		width: 90vw;
+		margin-left: 5vw;
+	}
+	.chart-name {
+		display: block;
+		width: 90vw;
+	}
+	.variation {
+		padding: 0.8% 2%;
+		margin: 1% 1%;
+		display: inline;
+	}
+	.max-min {
+		padding: 0.5% 1%;
+		margin: 0% 1%;
+		display: inline;
+	}
+	.flags {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+		grid-column-gap: 1rem;
+		grid-row-gap: 1rem;
+		padding: 4%;
+		margin: 0% 20px;
+	}
+	.title-currency {
+		display: flex;
+		align-items: center;
+		margin: 0.7rem auto;
+		height: 7vh;
+		width: 100%;
+	}
 }
